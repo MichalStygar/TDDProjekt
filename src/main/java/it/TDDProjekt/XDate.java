@@ -22,6 +22,6 @@ public class XDate {
 	}
 
     public int getYear() {
-		return 2022;
+		return date.getYear();
 	}
 }
