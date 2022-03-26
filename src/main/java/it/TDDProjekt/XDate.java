@@ -16,4 +16,8 @@ public class XDate {
     public int getDay() {
 		return date.getDayOfMonth();
 	}
+
+    public int getMonth() {
+		return 1;
+	}
 }
