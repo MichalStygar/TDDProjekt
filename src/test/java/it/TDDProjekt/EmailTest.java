@@ -26,7 +26,7 @@ public class EmailTest {
 	@Test
 	public void willSendEmailTest() throws Exception {
 
-		emailService.sendEmail("employee_data.txt", new XDate("2022-03-24"), "localhost", PORT);
+		emailService.sendEmail("employee_data.txt", new XDate("2022-03-26"), "localhost", PORT);
 		
 		assertEquals("message not sent?", 1, mailServer.getReceivedEmailSize());
 		SmtpMessage message = (SmtpMessage) mailServer.getReceivedEmail().next();
