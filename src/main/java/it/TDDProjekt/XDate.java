@@ -28,4 +28,8 @@ public class XDate {
     public String getDate() {
 		return date.toString();
 	}
+
+    public Boolean isSameDate() {
+		return true;
+	}
 }
