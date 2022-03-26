@@ -1,7 +1,8 @@
 package it.TDDProjekt;
 import java.io.IOException;
 import java.text.ParseException;
-
+import java.io.BufferedReader;
+import java.io.FileReader;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -12,13 +13,22 @@ import javax.mail.internet.MimeMessage;
 
 public class EmailService {
     public void sendEmail(String fileName, XDate xDate, String smtpHost, int smtpPort) throws IOException, ParseException, AddressException, MessagingException {
-        Employee employee = new Employee("Jan", "Nowak", "2022-01-26", "jan@nowak.com");
-        String recipient = employee.getEmail();
-        String body = "Mr. "+employee.getSurName()+" "+employee.getName()  +", the subscription to movies ends tomorrow."
-                + "Your account is: "+employee.getEmail()+"."+" Expiration date: "+ (xDate.getDay()+1)+"-0"+xDate.getMonth()+"-"+xDate.getYear();
-        String subject = "End of subscription";
-        sendMessage(smtpHost, smtpPort, "sender@here.com", subject, body, recipient);
-        
+        BufferedReader in = new BufferedReader(new FileReader(fileName));
+		String str = "";
+		str = in.readLine();
+		while ((str = in.readLine()) != null) {
+			String[] employeeData = str.split(", ");
+			Employee employee = new Employee(employeeData[0], employeeData[1], employeeData[2], employeeData[3]);
+			System.out.println(xDate.getDate());
+			if(xDate.isSameDate()) {
+				String recipient = employee.getEmail();
+				String body = "Mr. "+employee.getSurName()+" "+employee.getName()  +", the subscription to movies ends tomorrow."
+						+ "Your account is: "+employee.getEmail()+"."+" Expiration date: "+ (xDate.getDay()+1)+"-0"+xDate.getMonth()+"-"+xDate.getYear();
+				String subject = "End of subscription";
+				System.out.println(body);
+				sendMessage(smtpHost, smtpPort, "sender@here.com", subject, body, recipient);
+			}
+		}
     }
 
     private void sendMessage(String smtpHost, int smtpPort, String sender, String subject, String body, String recipient) throws AddressException, MessagingException {
