@@ -8,11 +8,13 @@ public class EmailTest {
     private static final int PORT = 9999;
 	private EmailService emailService;
 	private SimpleSmtpServer mailServer;
+    private XDate xDate;
 
 	@Before
 	public void setUp() throws Exception {
 		mailServer = SimpleSmtpServer.start(PORT);
 		emailService = new EmailService();
+        xDate = new XDate();
 	}
 
 	@After
@@ -28,7 +30,7 @@ public class EmailTest {
 		
 		assertEquals("message not sent?", 1, mailServer.getReceivedEmailSize());
 		SmtpMessage message = (SmtpMessage) mailServer.getReceivedEmail().next();
-		assertEquals("Mr. Nowak Jan, the subscription to movies ends tomorrow.Your account is: jan@nowak.com. Expiration date: 25-03-2022", message.getBody());
+		assertEquals("Mr. Nowak Jan, the subscription to movies ends tomorrow.Your account is: jan@nowak.com. Expiration date: "+ (xDate.getDay()+1)+"-0"+xDate.getMonth()+"-"+xDate.getYear(), message.getBody());
 		assertEquals("End of subscription", message.getHeaderValue("Subject"));
 		String[] recipients = message.getHeaderValues("To");
 		assertEquals(1, recipients.length);
