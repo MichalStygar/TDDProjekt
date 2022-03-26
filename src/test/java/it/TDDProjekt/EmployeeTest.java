@@ -20,4 +20,10 @@ public class EmployeeTest {
 		Employee employee = new Employee("Jan", "Nowak", "2022-01-14", "jan@nowak.com");
 		assertEquals("2022-01-14", employee.getDate());
 	}
+
+    @Test
+	public void getEmailTest() throws Exception {
+		Employee employee = new Employee("Jan", "Nowak", "2022-01-14", "jan@nowak.com");
+		assertEquals("jan@nowak.com", employee.getEmail());
+	}
 }
