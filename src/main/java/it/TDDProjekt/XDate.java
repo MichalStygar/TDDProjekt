@@ -26,6 +26,6 @@ public class XDate {
 	}
 
     public String getDate() {
-		return "2022-03-23";
+		return date.toString();
 	}
 }
