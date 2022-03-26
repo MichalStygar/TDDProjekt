@@ -20,24 +20,25 @@ public class EmailService {
         String body = "Mr. "+employee.getSurName()+" "+employee.getName()  +", the subscription to movies ends tomorrow."
                 + "Your account is: "+employee.getEmail()+"."+" Expiration date: "+ (xDate.getDay()+1)+"-0"+xDate.getMonth()+"-"+xDate.getYear();
         String subject = "End of subscription";
-        
-        java.util.Properties props = new java.util.Properties();
-        props.put("mail.smtp.host", smtpHost);
-        props.put("mail.smtp.port", "" + smtpPort);
-        Session session = Session.getInstance(props, null);
+        sendMessage(smtpHost, smtpPort, "sender@here.com", subject, body, recipient);
+	}
 
-        // Construct the message
-        Message msg = new MimeMessage(session);
-        msg.setFrom(new InternetAddress("sender@here.com"));
-        msg.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
-        msg.setSubject(subject);
-        msg.setText(body);
+    private void sendMessage(String smtpHost, int smtpPort, String sender, String subject, String body, String recipient) throws AddressException, MessagingException {
+		// Create a mail session
+		java.util.Properties props = new java.util.Properties();
+		props.put("mail.smtp.host", smtpHost);
+		props.put("mail.smtp.port", "" + smtpPort);
+		Session session = Session.getInstance(props, null);
 
-        // Send the message
-        Transport.send(msg);
-        System.out.println("Message sent!!!");
+		// Construct the message
+		Message msg = new MimeMessage(session);
+		msg.setFrom(new InternetAddress(sender));
+		msg.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
+		msg.setSubject(subject);
+		msg.setText(body);
 
-        
-		
+		// Send the message
+		Transport.send(msg);
+		System.out.println("Message sent!!!");
 	}
 }
