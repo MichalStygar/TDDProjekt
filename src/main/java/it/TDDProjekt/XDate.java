@@ -30,6 +30,11 @@ public class XDate {
 	}
 
     public Boolean isSameDate() {
-		return true;
+		LocalDate isSame = LocalDate.now();
+		if(date.equals(isSame)) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 }
