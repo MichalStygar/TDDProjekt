@@ -27,4 +27,10 @@ public class XDateTest {
 		XDate date = new XDate("2022-03-23");
 		assertEquals("2022-03-23", date.getDate());
 	}
+
+    @Test
+	public void isSameDateTest() throws Exception {
+		XDate date = new XDate("2022-03-26");
+		assertEquals(true, date.isSameDate());
+	}
 }
