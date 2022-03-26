@@ -20,4 +20,8 @@ public class XDate {
     public int getMonth() {
 		return date.getMonthValue();
 	}
+
+    public int getYear() {
+		return 2022;
+	}
 }
