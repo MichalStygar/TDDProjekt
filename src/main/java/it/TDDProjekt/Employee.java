@@ -24,4 +24,8 @@ public class Employee {
     public String getDate() {
 		return date;
 	}
+
+    public String getEmail() {
+		return email;
+	}
 }
