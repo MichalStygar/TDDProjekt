@@ -18,6 +18,6 @@ public class XDate {
 	}
 
     public int getMonth() {
-		return 1;
+		return date.getMonthValue();
 	}
 }
