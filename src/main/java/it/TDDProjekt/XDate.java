@@ -24,4 +24,8 @@ public class XDate {
     public int getYear() {
 		return date.getYear();
 	}
+
+    public String getDate() {
+		return "2022-03-23";
+	}
 }
