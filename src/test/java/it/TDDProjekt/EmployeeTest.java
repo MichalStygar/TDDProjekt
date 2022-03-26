@@ -26,4 +26,10 @@ public class EmployeeTest {
 		Employee employee = new Employee("Jan", "Nowak", "2022-01-14", "jan@nowak.com");
 		assertEquals("jan@nowak.com", employee.getEmail());
 	}
+
+    @Test
+	public void toStringTest() throws Exception {
+		Employee employee = new Employee("Jan", "Nowak", "2022-01-14", "jan@nowak.com");
+		assertEquals("Jan, Nowak, 2022-01-14, jan@nowak.com", employee.toString());
+	}
 }
