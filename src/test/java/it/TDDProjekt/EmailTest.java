@@ -36,4 +36,11 @@ public class EmailTest {
 		assertEquals(1, recipients.length);
 		assertEquals("jan@nowak.com", recipients[0].toString());
 	}
+
+    @Test
+	public void willNotSendEmailsTest() throws Exception {
+		emailService.sendEmail("employee_data.txt", new XDate("2022-03-24"), "localhost", PORT);
+
+		assertEquals("what? messages?", 0, mailServer.getReceivedEmailSize());
+	}
 }
